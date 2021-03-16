@@ -1,15 +1,17 @@
 from pytube import YouTube, Playlist, exceptions
-from os import getcwd, makedirs
+from os import getcwd, makedirs, path
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
+from logo import text
 
 __currentDir__ = getcwd()
 not_dir = __currentDir__ + "\\Download"
-__version__ = '0.1.0-alpha'
+__version__ = '0.1.1'
 modulo_name = 'Butterfly: Download Videos, Music or Playlists.'
 
 
 class Butterfly:
     def __init__(self):
+        # Aqui são definidos os parametros para a execução.
         makedirs(not_dir, exist_ok=True)
         self.parser = ArgumentParser(formatter_class=RawDescriptionHelpFormatter,
                                      description=f'{modulo_name} (versão {__version__})')
@@ -30,13 +32,15 @@ class Butterfly:
                                       '\n The default is "mp4".')
 
         self.parser.add_argument('--define-resolution', action='store',
-                                 default="720p", required=False, metavar='720p;480p;360p;240p;144p', dest='resol',
+                                 default="480p", required=False, metavar='1080p;720p;480p;360p;240p;144p', dest='resol',
                                  help='Defines the resolution of the video (s) to be downloaded.'
-                                      '\n The default is "720p".')
+                                      '\n The default is "480p".')
 
         self.parser.add_argument('--version', action='version',
                                  version=f'%(prog)s {__version__}', help='Shows the current version of the program.')
 
+        # aqui são instanciados todos as opções e todos acabara se tornando atributos
+        # Nomeado pelo parametro "dest"
         self.args = self.parser.parse_args()
 
     def download_video(self):
@@ -73,17 +77,30 @@ class Butterfly:
                     print('The defined PlayList is not public.')
 
     def main(self):
+        resols = ['1080p', '720p', '480p', '360p', '240p', '144p']
         urls = self.args.string
-        if 'playlist' in urls:
-            self.download_playlist()
+        dir = self.args.path
+        extension = self.args.ext
+        resolution = self.args.resol
+        print(text)
+        if not path.isdir(dir):
+            print('There is no valid directory!')
         else:
-            if self.args.ext == 'mp4':
-                self.download_video()
-            elif self.args.ext == 'mp3':
-                self.download_mp3()
+            if extension != "mp3" and extension != "mp4":
+                print('This extension is not supported.')
+                print(extension)
+                print(type(extension))
             else:
-                pass
+                if resolution not in resols:
+                    print('This resolution cannot be set.')
+                else:
+                    if 'playlist' in urls:
+                        self.download_playlist()
+                    else:
+                        if self.args.ext == 'mp4':
+                            self.download_video()
+                        elif self.args.ext == 'mp3':
+                            self.download_mp3()
 
 
-b = Butterfly()
-b.main()
+Butterfly().main()
