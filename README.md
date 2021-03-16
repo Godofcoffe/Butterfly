@@ -1,2 +1,2 @@
 # Butterfly
-Uma ferramenta para baixar videos ou musicas do youtube em massa.
+Uma ferramenta para baixar videos ou musicas do youtube.
