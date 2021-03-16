@@ -2,3 +2,4 @@
 .idea\.gitignore
 *.xml
 *.iml
+*.pyc
