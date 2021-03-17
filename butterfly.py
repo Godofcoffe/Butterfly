@@ -14,7 +14,7 @@ class Butterfly:
         # Aqui são definidos os parametros do programa.
         makedirs(not_dir, exist_ok=True)
         self.parser = ArgumentParser(formatter_class=RawDescriptionHelpFormatter,
-                                     description=f'{modulo_name} (versão {__version__})')
+                                     description=f'{modulo_name} (version {__version__})')
 
         self.parser.add_argument("string", action='store', metavar='STRINGS', nargs='+',
                                  help='One or more links to download.'
