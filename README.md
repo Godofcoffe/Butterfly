@@ -14,7 +14,7 @@ usage: butterfly.py [-h] [--dir-dst DIR] [--define-ext EXTENSION] [--define-reso
                     [--version]
                     STRINGS [STRINGS ...]
 
-Butterfly: Download Videos, Music or Playlists. (versão 0.1.2)
+Butterfly: Download Videos, Music or Playlists. (version 0.1.2)
 
 positional arguments:
   STRINGS               One or more links to download. Enclose the link in double quotation marks "". If it is a
