@@ -5,13 +5,13 @@ from logo import text
 
 __currentDir__ = getcwd()
 not_dir = __currentDir__ + "\\Download"
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 modulo_name = 'Butterfly: Download Videos, Music or Playlists.'
 
 
 class Butterfly:
     def __init__(self):
-        # Aqui são definidos os parametros para a execução.
+        # Aqui são definidos os parametros do programa.
         makedirs(not_dir, exist_ok=True)
         self.parser = ArgumentParser(formatter_class=RawDescriptionHelpFormatter,
                                      description=f'{modulo_name} (versão {__version__})')
@@ -39,8 +39,8 @@ class Butterfly:
         self.parser.add_argument('--version', action='version',
                                  version=f'%(prog)s {__version__}', help='Shows the current version of the program.')
 
-        # aqui são instanciados todos as opções e todos acabara se tornando atributos
-        # Nomeado pelo parametro "dest"
+        # aqui são instanciados todos as opções e todos acabaram se tornando atributos
+        # Nomeados pelo parametro "dest"
         self.args = self.parser.parse_args()
 
     def download_video(self):
@@ -88,8 +88,6 @@ class Butterfly:
         else:
             if extension != "mp3" and extension != "mp4":
                 print('This extension is not supported.')
-                print(extension)
-                print(type(extension))
             else:
                 if resolution not in resols:
                     print('This resolution cannot be set.')
