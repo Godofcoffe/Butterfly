@@ -1,4 +1,4 @@
-![screenshot](imagens/logo.PNG)
+![screenshot](images/logo.PNG)
 
 ## Installation ##
 ```
@@ -10,6 +10,7 @@ $ cd Butterfly
 ```
 ## Usage ##
 ```
+$ python3 butterfly.py --help
 usage: butterfly.py [-h] [--dir-dst DIR] [--define-ext EXTENSION] [--define-resolution 1080p;720p;480p;360p;240p;144p]
                     [--version]
                     STRINGS [STRINGS ...]
