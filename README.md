@@ -11,25 +11,24 @@ $ cd Butterfly
 ## Usage ##
 ```
 $ python3 butterfly.py --help
-usage: butterfly.py [-h] [--dir-dst DIR] [--define-ext EXTENSION] [--define-resolution 720p;480p;360p;240p;144p]
-                    [--version]
+usage: butterfly.py [-h] [--dir-dst DIR] [--define-ext EXTENSION] [--define-resolution 720p:144p] [--version]
                     STRINGS [STRINGS ...]
 
-Butterfly: Download Videos, Music or Playlists. (version 0.2.0)
+Butterfly: Download Videos, Music or Playlists. (version 0.3.0)
 
 positional arguments:
   STRINGS               One or more links to download. Enclose the link in double quotation marks "". If it is a
-                        playlist, it will only be downloaded if it is public.
+                        playlist, it will only be downloaded if it is public
 
 optional arguments:
   -h, --help            show this help message and exit
   --dir-dst DIR, -p DIR
-                        Here, the download destination directory is defined. If not specified, a folder will be
-                        created in this directory called "Downloads".
+                        Here, the download destination directory is defined. (default:
+                        C:\Users\kevin\Documents\git\Godofcoffe-local\Butterfly\Download)
   --define-ext EXTENSION, -e EXTENSION
-                        Defines the extension of the final file mp3 or mp4. The default is "mp4".
-  --define-resolution 720p;480p;360p;240p;144p, -r 720p;480p;360p;240p;144p
-                        Defines the resolution of the video (s) to be downloaded. The default is "480p".
+                        Defines the extension of the final file mp3 or mp4. (default: mp4)
+  --define-resolution 720p:144p, -r 720p:144p
+                        Defines the resolution of the video (s) to be downloaded. (default: 480p)
   --version             Shows the current version of the program.
 ```
 To download just one link:
