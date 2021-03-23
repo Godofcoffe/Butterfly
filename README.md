@@ -11,11 +11,11 @@ $ cd Butterfly
 ## Usage ##
 ```
 $ python3 butterfly.py --help
-usage: butterfly.py [-h] [--dir-dst DIR] [--define-ext EXTENSION] [--define-resolution 1080p;720p;480p;360p;240p;144p]
+usage: butterfly.py [-h] [--dir-dst DIR] [--define-ext EXTENSION] [--define-resolution 720p;480p;360p;240p;144p]
                     [--version]
                     STRINGS [STRINGS ...]
 
-Butterfly: Download Videos, Music or Playlists. (version 0.1.2)
+Butterfly: Download Videos, Music or Playlists. (version 0.2.0)
 
 positional arguments:
   STRINGS               One or more links to download. Enclose the link in double quotation marks "". If it is a
@@ -23,11 +23,12 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  --dir-dst DIR         Here, the download destination directory is defined. If not specified, a folder will be
+  --dir-dst DIR, -p DIR
+                        Here, the download destination directory is defined. If not specified, a folder will be
                         created in this directory called "Downloads".
-  --define-ext EXTENSION
+  --define-ext EXTENSION, -e EXTENSION
                         Defines the extension of the final file mp3 or mp4. The default is "mp4".
-  --define-resolution 1080p;720p;480p;360p;240p;144p
+  --define-resolution 720p;480p;360p;240p;144p, -r 720p;480p;360p;240p;144p
                         Defines the resolution of the video (s) to be downloaded. The default is "480p".
   --version             Shows the current version of the program.
 ```
