@@ -2,12 +2,11 @@ from pytube import YouTube, Playlist, exceptions
 from os import getcwd, makedirs, path
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from logo import text
-from requests import get
-from re import findall
+from form_text import *
 
 __currentDir__ = getcwd()
 not_dir = __currentDir__ + r"\Download"
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 modulo_name = 'Butterfly: Download Videos, Music or Playlists.'
 
 
@@ -44,33 +43,33 @@ class Butterfly:
         self.resols = ['720p', '480p', '360p', '240p', '144p']
         if self.args.path == not_dir:
             makedirs(not_dir, exist_ok=True)
-        print(text)
+        print(color_text('white', f'{text}'))
 
     def download_video(self, strings):
         try:
             yt = YouTube(strings)
         except exceptions.RegexMatchError as error:
-            print(f'An unexpected error has occurred: {error}')
+            print(color_text('red', f'An unexpected error has occurred: {error}'))
         except exceptions.VideoPrivate:
-            print('This video is private.')
+            print(color_text('white', 'This video is private.'))
         except exceptions.VideoRegionBlocked:
-            print('This video is blocked in the country.')
+            print(color_text('white', 'This video is blocked in the country.'))
         except exceptions.VideoUnavailable:
-            print('This video is unavailable')
+            print(color_text('white', 'This video is unavailable'))
         else:
-            print(f'Downloading...: {yt.title}')
+            print(color_text('yellow', 'Downloading...:'), color_text('white', f'{yt.title}'))
             self.download(yt)
 
     def download_mp3(self, strings):
         yt = YouTube(strings)
-        print(f'Downloading...: {yt.title}')
+        print(color_text('yellow', 'Downloading...:'), color_text('white', f'{yt.title}'))
         yt.streams.get_audio_only().download(self.args.path)
 
     def download_playlist(self, strings):
         try:
             p = Playlist(strings)
         except exceptions.RegexMatchError as error:
-            print(f'An unexpected error has occurred: {error}')
+            print(color_text('red', f'An unexpected error has occurred: {error}'))
         else:
             for vd in p.video_urls:
                 print()
@@ -84,14 +83,14 @@ class Butterfly:
         try:
             link.streams.get_by_resolution(resolution=self.args.resol).download(self.args.path)
         except AttributeError:
-            print(f'An unexpected error has occurred: This video resolution was not found ...')
+            print(color_text('red', f'An unexpected error has occurred: This video resolution was not found ...'))
             index = self.resols.index(self.args.resol)
             for resol in self.resols[index + 1:]:
                 print(f'Trying with lower resolutions: {resol}')
                 try:
                     link.streams.get_by_resolution(resol).download(self.args.path)
                 except AttributeError:
-                    print(f'It was not possible with {resol}.')
+                    print(color_text('yellow', f'It was not possible with {resol}.'))
                 else:
                     break
 
@@ -101,33 +100,33 @@ class Butterfly:
         extension = kwargs.get('extension')
         resolution = kwargs.get('resolution')
         if not path.isdir(ph):
-            print('There is no valid directory!')
+            print(color_text('red', 'There is no valid directory!'))
             print(ph)
             return False
         if extension != "mp3" and extension != "mp4":
-            print('This extension is not supported.')
+            print(color_text('red', 'This extension is not supported.'))
             print(extension)
             return False
         if resolution not in self.resols:
-            print('This resolution cannot be set.')
+            print(color_text('red', 'This resolution cannot be set.'))
             print(resolution)
             return False
         else:
             return True
 
-    def update(self):
-        try:
-            r = get("https://raw.githubusercontent.com/Godofcoffe/Butterfly/main/butterfly.py")
+    # def update(self):
+    # try:
+    # r = get("https://raw.githubusercontent.com/Godofcoffe/Butterfly/main/butterfly.py")
 
-            remote_version = str(findall("__version__ = '(.*)'", r.text)[0])
-            local_version = __version__
+    # remote_version = str(findall("__version__ = '(.*)'", r.text)[0])
+    # local_version = __version__
 
-            if remote_version != local_version:
-                print("Update Available!\n" +
-                      f"You are running version {local_version}. Version {remote_version} "
-                      f"is available at https://github.com/Godofcoffe/Butterfly")
-        except Exception as error:
-            print(f"A problem occured while checking for an update: {error}")
+    # if remote_version != local_version:
+    # print("Update Available!\n" +
+    # f"You are running version {local_version}. Version {remote_version} "
+    # f"is available at https://github.com/Godofcoffe/Butterfly")
+    # except Exception as error:
+    # print(f"A problem occured while checking for an update: {error}")
 
     def main(self):
         urls = self.args.string
@@ -142,7 +141,6 @@ class Butterfly:
 
 
 B = Butterfly()
-B.update()
 print()
 ok = B.test(path=B.args.path, extension=B.args.ext, resolution=B.args.resol)
 print()
