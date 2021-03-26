@@ -1,5 +1,5 @@
 
-.idea\.gitignore
+.idea
 *.xml
 *.iml
 *.pyc
