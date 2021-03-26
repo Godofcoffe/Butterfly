@@ -1,5 +1,7 @@
 ![screenshot](images/logo.PNG)
 
+![gif](images/butterfly-gif-exemple.gif)
+
 ## Installation ##
 ```
 # clone the repo
