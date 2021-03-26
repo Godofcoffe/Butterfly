@@ -1,5 +1,7 @@
 from pytube import YouTube, Playlist, exceptions
 from os import getcwd, makedirs, path
+from requests import get
+from re import findall
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from logo import text
 from form_text import *
@@ -114,19 +116,19 @@ class Butterfly:
         else:
             return True
 
-    # def update(self):
-    # try:
-    # r = get("https://raw.githubusercontent.com/Godofcoffe/Butterfly/main/butterfly.py")
+    def update(self):
+        try:
+            r = get("https://raw.githubusercontent.com/Godofcoffe/Butterfly/main/butterfly.py")
 
-    # remote_version = str(findall("__version__ = '(.*)'", r.text)[0])
-    # local_version = __version__
+            remote_version = str(findall('__version__ = (.*)', r.text)[0])
+            local_version = __version__
 
-    # if remote_version != local_version:
-    # print("Update Available!\n" +
-    # f"You are running version {local_version}. Version {remote_version} "
-    # f"is available at https://github.com/Godofcoffe/Butterfly")
-    # except Exception as error:
-    # print(f"A problem occured while checking for an update: {error}")
+            if remote_version != local_version:
+                print("Update Available!\n" +
+                      f"You are running version {local_version}. Version {remote_version} "
+                      f"is available at https://github.com/Godofcoffe/Butterfly")
+        except Exception as error:
+            print(f"A problem occured while checking for an update: {error}")
 
     def main(self):
         urls = self.args.string
@@ -141,6 +143,7 @@ class Butterfly:
 
 
 B = Butterfly()
+B.update()
 print()
 ok = B.test(path=B.args.path, extension=B.args.ext, resolution=B.args.resol)
 print()
