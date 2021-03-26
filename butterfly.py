@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+
+from colorama import init
 from pytube import YouTube, Playlist, exceptions
 from os import getcwd, makedirs, path
 from requests import get
@@ -20,8 +23,7 @@ class Butterfly:
 
         self.parser.add_argument("string", action='store', metavar='STRINGS', nargs='+',
                                  help='One or more links to download. '
-                                      'Enclose the link in double quotation marks "". '
-                                      'If it is a playlist, it will only be downloaded if it is public')
+                                      'Enclose the link in double quotation marks "".')
 
         self.parser.add_argument('--dir-dst', '-p', action='store', dest='path',
                                  default=not_dir, required=False, metavar='DIR',
@@ -53,18 +55,18 @@ class Butterfly:
         except exceptions.RegexMatchError as error:
             print(color_text('red', f'An unexpected error has occurred: {error}'))
         except exceptions.VideoPrivate:
-            print(color_text('white', 'This video is private.'))
+            print(color_text('red', 'This video is private.'))
         except exceptions.VideoRegionBlocked:
-            print(color_text('white', 'This video is blocked in the country.'))
+            print(color_text('red', 'This video is blocked in the country.'))
         except exceptions.VideoUnavailable:
-            print(color_text('white', 'This video is unavailable'))
+            print(color_text('red', 'This video is unavailable'))
         else:
-            print(color_text('yellow', 'Downloading...:'), color_text('white', f'{yt.title}'))
+            print(color_text('green', 'Downloading...:'), color_text('white', f'{yt.title}'))
             self.download(yt)
 
     def download_mp3(self, strings):
         yt = YouTube(strings)
-        print(color_text('yellow', 'Downloading...:'), color_text('white', f'{yt.title}'))
+        print(color_text('green', 'Downloading...:'), color_text('white', f'{yt.title}'))
         yt.streams.get_audio_only().download(self.args.path)
 
     def download_playlist(self, strings):
@@ -85,14 +87,14 @@ class Butterfly:
         try:
             link.streams.get_by_resolution(resolution=self.args.resol).download(self.args.path)
         except AttributeError:
-            print(color_text('red', f'An unexpected error has occurred: This video resolution was not found ...'))
+            print(color_text('yellow', f'An unexpected error has occurred: This video resolution was not found ...'))
             index = self.resols.index(self.args.resol)
             for resol in self.resols[index + 1:]:
                 print(f'Trying with lower resolutions: {resol}')
                 try:
                     link.streams.get_by_resolution(resol).download(self.args.path)
                 except AttributeError:
-                    print(color_text('yellow', f'It was not possible with {resol}.'))
+                    print(f'It was not possible with', color_text('red', f'{resol}'))
                 else:
                     break
 
@@ -124,11 +126,11 @@ class Butterfly:
             local_version = __version__
 
             if remote_version != local_version:
-                print("Update Available!\n" +
-                      f"You are running version {local_version}. Version {remote_version} "
-                      f"is available at https://github.com/Godofcoffe/Butterfly")
+                print(color_text('yellow', "Update Available!\n" +
+                                 f"You are running version {local_version}. Version {remote_version} "
+                                 f"is available at https://github.com/Godofcoffe/Butterfly"))
         except Exception as error:
-            print(f"A problem occured while checking for an update: {error}")
+            print(color_text('red', f"A problem occured while checking for an update: {error}"))
 
     def main(self):
         urls = self.args.string
@@ -142,6 +144,7 @@ class Butterfly:
                     self.download_mp3(url)
 
 
+init()
 B = Butterfly()
 B.update()
 print()
