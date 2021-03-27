@@ -19,7 +19,7 @@ $ python3 butterfly.py --help
 usage: butterfly.py [-h] [--dir-dst DIR] [--define-ext EXTENSION] [--define-resolution 720p:144p] [--version]
                     STRINGS [STRINGS ...]
 
-Butterfly: Download Videos, Music or Playlists. (version 0.4.0)
+Butterfly: Download Videos, Music or Playlists. (version 0.4.1)
 
 positional arguments:
   STRINGS               One or more links to download. Enclose the link in double quotation marks "".
