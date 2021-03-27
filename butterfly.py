@@ -11,7 +11,7 @@ from form_text import *
 
 __currentDir__ = getcwd()
 not_dir = __currentDir__ + r"\Download"
-__version__ = "0.4.0"
+__version__ = "0.4.1"
 modulo_name = 'Butterfly: Download Videos, Music or Playlists.'
 
 
@@ -122,7 +122,7 @@ class Butterfly:
         try:
             r = get("https://raw.githubusercontent.com/Godofcoffe/Butterfly/main/butterfly.py")
 
-            remote_version = str(findall('__version__ = (.*)', r.text)[0])
+            remote_version = str(findall('__version__ = "(.*)"', r.text)[0])
             local_version = __version__
 
             if remote_version != local_version:
