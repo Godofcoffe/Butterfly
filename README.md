@@ -9,6 +9,9 @@ $ git clone https://github.com/Godofcoffe/Butterfly.git
 
 # change the working directory to butterfly
 $ cd Butterfly
+
+# install the requirements
+$ python3 -m pip install -r requirements.txt
 ```
 ## Usage ##
 ```
