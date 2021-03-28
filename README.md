@@ -43,4 +43,3 @@ To download more than one link:
 ```
 python3 butterfly.py "link1" "link2" "link3"
 ```
-Remembering that the links can be either a video or a playlist.
