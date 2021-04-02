@@ -44,6 +44,6 @@ To download more than one link:
 python3 butterfly.py "link1" "link2" "link3"
 ```
 ## LICENSE
-MIT ©️ Butterfly Projetc
+MIT ©️ Butterfly Project
 
 Original Creator - [Godofcoffe](https://github.com/Godofcoffe)
