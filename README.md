@@ -2,7 +2,7 @@
 
 ![gif](images/gif-example.gif)
 
-## Installation ##
+## Installation
 ```
 # clone the repo
 $ git clone https://github.com/Godofcoffe/Butterfly.git
@@ -13,7 +13,7 @@ $ cd Butterfly
 # install the requirements
 $ python3 -m pip install -r requirements.txt
 ```
-## Usage ##
+## Usage
 ```
 $ python3 butterfly.py --help
 usage: butterfly.py [-h] [--dir-dst DIR] [--define-ext EXTENSION] [--define-resolution 720p:144p] [--version]
@@ -43,3 +43,7 @@ To download more than one link:
 ```
 python3 butterfly.py "link1" "link2" "link3"
 ```
+## LICENSE
+MIT ©️ Butterfly Projetc
+
+Original Creator - [Godofcoffe](https://github.com/Godofcoffe)
