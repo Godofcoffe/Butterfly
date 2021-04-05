@@ -11,7 +11,7 @@ from form_text import *
 
 __currentDir__ = getcwd()
 not_dir = __currentDir__ + r"\Download"
-__version__ = "0.4.1"
+__version__ = "0.5.0"
 modulo_name = 'Butterfly: Download Videos, Music or Playlists.'
 
 
@@ -36,6 +36,10 @@ class Butterfly:
         self.parser.add_argument('--define-resolution', '-r', action='store',
                                  default="480p", required=False, metavar='720p:144p', dest='resol',
                                  help='Defines the resolution of the video (s) to be downloaded.')
+
+        self.parser.add_argument('--print-streams', '-s', action='store_true', required=False, dest='p_stream',
+                                 help='displays streaming video options such as resolutions, '
+                                      'file extensions, bitrate, encoding and more.')
 
         self.parser.add_argument('--version', action='version',
                                  version=f'%(prog)s {__version__}', help='Shows the current version of the program.')
@@ -138,7 +142,11 @@ class Butterfly:
             if 'playlist' in url:
                 self.download_playlist(url)
             else:
-                if self.args.ext == 'mp4':
+                if self.args.p_stream:
+                    yt = YouTube(url)
+                    for stream in yt.streams.desc():
+                        print(stream)
+                elif self.args.ext == 'mp4':
                     self.download_video(url)
                 elif self.args.ext == 'mp3':
                     self.download_mp3(url)
