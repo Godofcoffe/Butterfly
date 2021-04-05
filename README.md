@@ -27,8 +27,7 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   --dir-dst DIR, -p DIR
-                        Here, the download destination directory is defined. (default: C:\Users\kevin\Documents\git\Godofcoffe-
-                        local\Butterfly\Download)
+                        Here, the download destination directory is defined. (default: "Your directory where the program will be run")
   --define-ext EXTENSION, -e EXTENSION
                         Defines the extension of the final file mp3 or mp4. (default: mp4)
   --define-resolution 720p:144p, -r 720p:144p
