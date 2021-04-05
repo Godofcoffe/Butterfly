@@ -34,8 +34,7 @@ optional arguments:
   --define-resolution 720p:144p, -r 720p:144p
                         Defines the resolution of the video (s) to be downloaded. (default: 480p)
   --print-streams, -s   displays streaming video options such as resolutions, file extensions, bitrate, 
-                        encoding and more. (default:
-                        False)
+                        encoding and more. (default: False)
   --version             Shows the current version of the program.
 ```
 To download just one link:
