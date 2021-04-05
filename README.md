@@ -16,10 +16,10 @@ $ python3 -m pip install -r requirements.txt
 ## Usage
 ```
 $ python3 butterfly.py --help
-usage: butterfly.py [-h] [--dir-dst DIR] [--define-ext EXTENSION] [--define-resolution 720p:144p] [--version]
+usage: butterfly.py [-h] [--dir-dst DIR] [--define-ext EXTENSION] [--define-resolution 720p:144p] [--print-streams] [--version]
                     STRINGS [STRINGS ...]
 
-Butterfly: Download Videos, Music or Playlists. (version 0.4.1)
+Butterfly: Download Videos, Music or Playlists. (version 0.5.0)
 
 positional arguments:
   STRINGS               One or more links to download. Enclose the link in double quotation marks "".
@@ -27,12 +27,14 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   --dir-dst DIR, -p DIR
-                        Here, the download destination directory is defined. (default:
-                        "Path where it will be executed")
+                        Here, the download destination directory is defined. (default: C:\Users\kevin\Documents\git\Godofcoffe-
+                        local\Butterfly\Download)
   --define-ext EXTENSION, -e EXTENSION
                         Defines the extension of the final file mp3 or mp4. (default: mp4)
   --define-resolution 720p:144p, -r 720p:144p
                         Defines the resolution of the video (s) to be downloaded. (default: 480p)
+  --print-streams, -s   displays streaming video options such as resolutions, file extensions, bitrate, encoding and more. (default:
+                        False)
   --version             Shows the current version of the program.
 ```
 To download just one link:
