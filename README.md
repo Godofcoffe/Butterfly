@@ -39,7 +39,7 @@ optional arguments:
 ```
 To download just one link:
 ```
-python3 butterfly.py "link1"
+python3 butterfly.py "link"
 ```
 To download more than one link:
 ```
