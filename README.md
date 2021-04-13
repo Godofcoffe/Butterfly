@@ -1,6 +1,6 @@
-![screenshot](images/logo.PNG)
+![screenshot](.images/logo.PNG)
 
-![gif](images/gif-example.gif)
+![gif](.images/gif-example.gif)
 
 ## Installation
 ```
