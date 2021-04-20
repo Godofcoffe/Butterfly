@@ -100,7 +100,7 @@ class Butterfly:
                 try:
                     link.streams.get_by_resolution(resol).download(self.args.path)
                 except AttributeError:
-                    print(f'It was not possible with', color_text('red', f'{resol}'))
+                    print(f'It was not possible with', color_text('red', f'{resol}...'))
                 else:
                     break
 
