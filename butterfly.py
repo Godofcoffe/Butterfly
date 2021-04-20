@@ -2,7 +2,7 @@
 
 from colorama import init
 from pytube import YouTube, Playlist, exceptions
-from os import makedirs, path
+from os import makedirs, path, rename
 from requests import get
 from re import findall
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
@@ -10,7 +10,7 @@ from logo import text
 from form_text import *
 
 not_dir = r"./Download"
-__version__ = "0.5.0"
+__version__ = "0.5.1"
 modulo_name = 'Butterfly: Download Videos, Music or Playlists.'
 
 
@@ -71,7 +71,9 @@ class Butterfly:
         yt = YouTube(strings)
         print(color_text('green', 'Downloading...:'), color_text('white', f'{yt.title}'))
         yt.streams.get_audio_only().download(self.args.path)
-        print(color_text('grenn', ''))
+        infilename = path.join(not_dir, f'{yt.title}.mp4')
+        newname = infilename.replace(".mp4", ".mp3")
+        rename(infilename, newname)
 
     def download_playlist(self, strings):
         try:
@@ -122,7 +124,8 @@ class Butterfly:
         else:
             return True
 
-    def update(self):
+    @staticmethod
+    def update():
         try:
             r = get("https://raw.githubusercontent.com/Godofcoffe/Butterfly/main/butterfly.py")
 
