@@ -2,15 +2,14 @@
 
 from colorama import init
 from pytube import YouTube, Playlist, exceptions
-from os import getcwd, makedirs, path
+from os import makedirs, path
 from requests import get
 from re import findall
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from logo import text
 from form_text import *
 
-__currentDir__ = getcwd()
-not_dir = __currentDir__ + r"\Download"
+not_dir = r"./Download"
 __version__ = "0.5.0"
 modulo_name = 'Butterfly: Download Videos, Music or Playlists.'
 
@@ -72,6 +71,7 @@ class Butterfly:
         yt = YouTube(strings)
         print(color_text('green', 'Downloading...:'), color_text('white', f'{yt.title}'))
         yt.streams.get_audio_only().download(self.args.path)
+        print(color_text('grenn', ''))
 
     def download_playlist(self, strings):
         try:
