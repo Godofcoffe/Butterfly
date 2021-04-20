@@ -10,7 +10,7 @@ from logo import text
 from form_text import *
 
 not_dir = r"./Download"
-__version__ = "0.5.1"
+__version__ = "0.5.2"
 modulo_name = 'Butterfly: Download Videos, Music or Playlists.'
 
 
@@ -71,7 +71,7 @@ class Butterfly:
         yt = YouTube(strings)
         print(color_text('green', 'Downloading...:'), color_text('white', f'{yt.title}'))
         yt.streams.get_audio_only().download(self.args.path)
-        infilename = path.join(not_dir, f'{yt.title}.mp4')
+        infilename = path.join(self.args.path, f'{yt.title}.mp4')
         newname = infilename.replace(".mp4", ".mp3")
         rename(infilename, newname)
 
